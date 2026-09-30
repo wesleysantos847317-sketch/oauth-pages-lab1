@@ -1,9 +1,3 @@
-PENDENTE: substitua URL_BASE pelo host pages.dev de producao e confirme os valores no painel da OAuth App do GitHub.
+Pagina inicial: https://oauth-pages-lab1.pages.dev
 
-Pagina inicial:
-URL_BASE
-
-URL de retorno:
-URL_BASE/oauth/callback/github
-
-Nao inclua Client ID, Client Secret ou outros identificadores privados nesta evidencia.
+URL de retorno: https://oauth-pages-lab1.pages.dev/oauth/callback/github

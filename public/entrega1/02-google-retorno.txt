@@ -1,6 +1,1 @@
-PENDENTE: substitua URL_BASE pelo host pages.dev de producao e confirme que este endereco foi cadastrado no cliente OAuth Web do Google.
-
-URL de retorno esperada:
-URL_BASE/oauth/callback/google
-
-Nao inclua Client ID, Client Secret ou outros identificadores privados nesta evidencia.
+https://oauth-pages-lab1.pages.dev/oauth/callback/google
