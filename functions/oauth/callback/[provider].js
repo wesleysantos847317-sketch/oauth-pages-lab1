@@ -44,11 +44,10 @@ export async function onRequestGet({ request, env, params }) {
     const transactionHash = await sha256(transactionCookie);
     const now = Math.floor(Date.now() / 1000);
     const transaction = await env.DB.prepare(
-      "SELECT state_hash, nonce, code_verifier FROM oauth_transactions WHERE id_hash = ? AND provider = ? AND expires_at > ?",
+      "DELETE FROM oauth_transactions WHERE id_hash = ? AND provider = ? AND expires_at > ? RETURNING state_hash, nonce, code_verifier",
     ).bind(transactionHash, provider, now).first();
     if (!transaction) return failedCallback();
 
-    await env.DB.prepare("DELETE FROM oauth_transactions WHERE id_hash = ?").bind(transactionHash).run();
     if (!constantTimeEqual(await sha256(state), transaction.state_hash)) return failedCallback();
 
     const tokens = await exchangeAuthorizationCode(provider, config, code, transaction.code_verifier);

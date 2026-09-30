@@ -159,13 +159,23 @@ export async function verifyGoogleIdentity(idToken, clientId, expectedNonce) {
   if (discovery.issuer !== "https://accounts.google.com") throw new Error("Unexpected identity issuer");
 
   const keysUrl = new URL(discovery.jwks_uri);
-  if (keysUrl.protocol !== "https:" || !keysUrl.hostname.endsWith("googleapis.com")) {
+  if (
+    keysUrl.protocol !== "https:" ||
+    (keysUrl.hostname !== "googleapis.com" && !keysUrl.hostname.endsWith(".googleapis.com")) ||
+    (keysUrl.port && keysUrl.port !== "443")
+  ) {
     throw new Error("Unexpected signing keys URL");
   }
   const keysResponse = await fetch(keysUrl);
   if (!keysResponse.ok) throw new Error("Signing keys unavailable");
   const keySet = await keysResponse.json();
-  const jwk = keySet.keys?.find((key) => key.kid === header.kid && key.kty === "RSA");
+  const jwk = keySet.keys?.find(
+    (key) =>
+      key.kid === header.kid &&
+      key.kty === "RSA" &&
+      (key.alg === undefined || key.alg === "RS256") &&
+      (key.use === undefined || key.use === "sig"),
+  );
   if (!jwk) throw new Error("Signing key not found");
 
   const publicKey = await crypto.subtle.importKey(
@@ -184,14 +194,19 @@ export async function verifyGoogleIdentity(idToken, clientId, expectedNonce) {
   );
 
   const now = Math.floor(Date.now() / 1000);
-  const audienceMatches = claims.aud === clientId || claims.aud?.includes?.(clientId);
+  const audienceMatches = typeof claims.aud === "string"
+    ? claims.aud === clientId
+    : Array.isArray(claims.aud) && claims.aud.includes(clientId);
+  const authorizedPartyMatches = Array.isArray(claims.aud) && claims.aud.length > 1
+    ? claims.azp === clientId
+    : claims.azp === undefined || claims.azp === clientId;
   if (
     !validSignature ||
     claims.iss !== "https://accounts.google.com" ||
     !audienceMatches ||
-    (Array.isArray(claims.aud) && claims.aud.length > 1 && claims.azp !== clientId) ||
+    !authorizedPartyMatches ||
     !Number.isFinite(claims.exp) || claims.exp <= now ||
-    !Number.isFinite(claims.iat) || claims.iat > now + 60 ||
+    !Number.isFinite(claims.iat) || claims.iat > now + 60 || claims.iat < now - 3600 ||
     !constantTimeEqual(claims.nonce, expectedNonce) ||
     typeof claims.sub !== "string" || !claims.sub
   ) {

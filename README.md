@@ -74,6 +74,10 @@ Use a URL de produção atribuída, sem barra no final. Não substitua por uma U
 
 Configure os valores somente em **Settings > Variables and Secrets** no Pages. Nunca os adicione a arquivos, issues, commits ou evidências. Depois, publique novamente. A URL de produção deve corresponder exatamente às URLs registradas nos provedores.
 
+## Estado conferido
+
+Em 30/09/2026, o Pages de produção estava implantado com saída `public`, deploy automático da branch `main`, binding D1 `DB` e `PUBLIC_BASE_URL` configurada. A OAuth App GitHub existe com homepage e callback de produção exatos, sem wildcard ou Device Flow. Os logins ainda respondem 503 porque faltam no Pages `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET`. Cadastre os dois IDs como texto e os dois secrets como valores criptografados; não os grave no repositório. O Client Web do Google também precisa estar cadastrado com o callback indicado acima.
+
 ## Verificação
 
 Depois da implantação e configuração, confira `/api/health`, os dois redirecionamentos de login, `/api/me`, logout e os casos de falha do enunciado. Não registre valores de `state`, cookies, códigos ou tokens. O fluxo real não pode ser concluído localmente sem o projeto Pages, o banco D1, as URLs de produção e os segredos cadastrados nos painéis.
