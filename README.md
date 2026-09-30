@@ -2,6 +2,8 @@
 
 Aplicação estática em português com login Google e GitHub, construída para o laboratório da Avaliação 2. O site fica em `public/`; as Pages Functions ficam em `functions/`, na raiz. Não há dependências de Node.js, npm, Wrangler ou bibliotecas externas no projeto.
 
+URL de produção atribuída: <https://oauth-pages-lab1.pages.dev>.
+
 ## O que está implementado
 
 - `/oauth/login/google` e `/oauth/login/github`: iniciam Authorization Code + PKCE S256, com `state` e cookie temporário protegido.
@@ -63,10 +65,10 @@ ORDER BY type, name;
 
 ### Provedores e variáveis
 
-Primeiro publique em produção e copie a URL atribuída pelo Cloudflare, sem barra no final. Use somente URLs `pages.dev` de produção, nunca URLs de preview.
+Use a URL de produção atribuída, sem barra no final. Não substitua por uma URL de preview.
 
-- Google OAuth Web client: redirect URI `URL_BASE/oauth/callback/google`; escopos `openid email profile`.
-- GitHub OAuth App: homepage `URL_BASE`; callback `URL_BASE/oauth/callback/github`; não solicite escopos adicionais.
+- Google OAuth Web client: redirect URI `https://oauth-pages-lab1.pages.dev/oauth/callback/google`; escopos `openid email profile`.
+- GitHub OAuth App: homepage `https://oauth-pages-lab1.pages.dev`; callback `https://oauth-pages-lab1.pages.dev/oauth/callback/github`; não solicite escopos adicionais.
 - Variáveis de texto no Pages: `PUBLIC_BASE_URL`, `GOOGLE_CLIENT_ID`, `GITHUB_CLIENT_ID`.
 - Segredos criptografados no Pages: `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_SECRET`.
 
