@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1f3eb">
+    <title>Acesso | Laboratório OAuth</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="access-panel" aria-labelledby="page-title">
+        <div class="panel-topline">
+          <span class="mark" aria-hidden="true">O</span>
+          <span class="course-label">Engenharia de Software · 2º período</span>
+        </div>
+
+        <div class="intro">
+          <p class="eyebrow">Laboratório de autenticação</p>
+          <h1 id="page-title">Entre para continuar.</h1>
+          <p class="description">Acesse com uma conta Google ou GitHub. Sua sessão fica protegida neste site.</p>
+        </div>
+
+        <div class="login-options" aria-label="Opções de acesso">
+          <a class="login-button login-google" href="/oauth/login/google">
+            <span class="provider-mark" aria-hidden="true">G</span>
+            Entrar com Google
+            <span class="button-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+          <a class="login-button login-github" href="/oauth/login/github">
+            <span class="provider-mark github-mark" aria-hidden="true">GH</span>
+            Entrar com GitHub
+            <span class="button-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+
+        <div class="session-area" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <p id="status">Consultando sua sessão...</p>
+          <form method="post" action="/oauth/logout">
+            <button id="logout" type="submit" hidden>Sair</button>
+          </form>
+        </div>
+
+        <footer class="panel-footer">
+          <span>OAuth 2.0 · PKCE</span>
+          <a href="/api/health">Status do serviço</a>
+        </footer>
+      </section>
+
+      <aside class="side-note" aria-label="Informação do laboratório">
+        <p class="side-index">01 <span>/</span> 02</p>
+        <div class="orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="side-copy">Identidade confirmada.<br><strong>Sessão sob seu controle.</strong></p>
+        <p class="side-caption">Google OpenID Connect<br>GitHub OAuth App</p>
+      </aside>
+    </main>
+  </body>
+</html>

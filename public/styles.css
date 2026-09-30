@@ -1,0 +1,380 @@
+:root {
+  color-scheme: light;
+  --ink: #1c2825;
+  --muted: #64716b;
+  --paper: #f1f3eb;
+  --panel: #ffffff;
+  --line: #dfe5db;
+  --leaf: #2d694f;
+  --lime: #d7ef85;
+  --coral: #d4674d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(#c6d1c2 0.7px, transparent 0.7px);
+  background-size: 16px 16px;
+  font-family: "Aptos", "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.72fr);
+  width: min(100% - 48px, 940px);
+  min-height: 620px;
+  margin: 7vh auto;
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: 0 24px 70px #304c371a;
+}
+
+.access-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 38px clamp(28px, 6vw, 72px) 28px;
+}
+
+.panel-topline,
+.panel-footer,
+.session-area {
+  display: flex;
+  align-items: center;
+}
+
+.panel-topline {
+  gap: 12px;
+}
+
+.mark {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  color: #fff;
+  background: var(--leaf);
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.course-label,
+.eyebrow,
+.panel-footer,
+.side-index,
+.side-caption {
+  font-size: 12px;
+}
+
+.course-label {
+  color: var(--muted);
+}
+
+.intro {
+  margin: auto 0 34px;
+  padding-top: 68px;
+}
+
+.eyebrow {
+  margin: 0 0 13px;
+  color: var(--leaf);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 420px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 54px);
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+.description {
+  max-width: 385px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.login-options {
+  display: grid;
+  gap: 11px;
+}
+
+.login-button {
+  display: grid;
+  grid-template-columns: 25px 1fr 20px;
+  align-items: center;
+  min-height: 54px;
+  gap: 12px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: border-color 150ms ease, transform 150ms ease, background 150ms ease;
+}
+
+.login-button:hover {
+  border-color: var(--leaf);
+  transform: translateY(-1px);
+}
+
+.login-button:focus-visible,
+.panel-footer a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #80a85b;
+  outline-offset: 3px;
+}
+
+.login-google:hover {
+  background: #f7faef;
+}
+
+.login-github {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.login-github:hover {
+  background: #2b3b35;
+  border-color: #2b3b35;
+}
+
+.provider-mark {
+  display: grid;
+  width: 24px;
+  aspect-ratio: 1;
+  place-items: center;
+  color: var(--coral);
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.github-mark {
+  color: var(--lime);
+  border-radius: 6px;
+  font-size: 9px;
+}
+
+.button-arrow {
+  justify-self: end;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.session-area {
+  min-height: 57px;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.session-area p {
+  flex: 1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.status-dot {
+  flex: 0 0 auto;
+  width: 8px;
+  aspect-ratio: 1;
+  background: #9eaaa0;
+  border-radius: 50%;
+}
+
+.status-dot.is-active {
+  background: var(--leaf);
+}
+
+button {
+  padding: 7px 10px;
+  color: var(--leaf);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.panel-footer {
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 19px;
+  color: var(--muted);
+}
+
+.panel-footer a {
+  text-decoration-color: #aab7a8;
+  text-underline-offset: 3px;
+}
+
+.side-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 34px 35px;
+  color: #fff;
+  background-color: var(--leaf);
+  background-image: linear-gradient(145deg, #2d694f, #214a40 82%);
+}
+
+.side-index {
+  margin: 0;
+  color: #d4e6c7;
+}
+
+.side-index span {
+  padding: 0 5px;
+  color: var(--lime);
+}
+
+.orbit {
+  position: relative;
+  display: grid;
+  width: min(100%, 260px);
+  aspect-ratio: 1;
+  place-items: center;
+  align-self: center;
+  border: 1px solid #ffffff4a;
+  border-radius: 50%;
+}
+
+.orbit::before,
+.orbit::after {
+  position: absolute;
+  inset: 13%;
+  border: 1px solid #ffffff3d;
+  border-radius: 50%;
+  content: "";
+}
+
+.orbit::after {
+  inset: 28%;
+  border-color: #d7ef8580;
+}
+
+.orbit span {
+  position: absolute;
+  width: 12px;
+  aspect-ratio: 1;
+  background: var(--lime);
+  border-radius: 50%;
+}
+
+.orbit span:nth-child(1) {
+  top: 14%;
+  left: 26%;
+}
+
+.orbit span:nth-child(2) {
+  right: 11%;
+  bottom: 28%;
+  width: 8px;
+  background: #f0ad83;
+}
+
+.orbit span:nth-child(3) {
+  bottom: 13%;
+  left: 33%;
+  width: 6px;
+}
+
+.side-copy {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.side-copy strong {
+  color: var(--lime);
+  font-weight: 400;
+}
+
+.side-caption {
+  margin: 18px 0 0;
+  color: #d4e6c7;
+  line-height: 1.7;
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    grid-template-columns: 1fr;
+    width: min(100% - 24px, 480px);
+    min-height: auto;
+    margin: 12px auto;
+  }
+
+  .access-panel {
+    min-height: 590px;
+    padding: 25px 24px 22px;
+  }
+
+  .intro {
+    padding-top: 54px;
+  }
+
+  .side-note {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 145px;
+    gap: 8px 18px;
+    padding: 20px 24px;
+  }
+
+  .side-index {
+    grid-column: 1 / -1;
+  }
+
+  .orbit {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    width: 92px;
+  }
+
+  .side-copy {
+    font-size: 17px;
+  }
+
+  .side-caption {
+    margin: 0;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
