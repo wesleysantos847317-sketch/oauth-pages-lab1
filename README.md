@@ -76,7 +76,7 @@ Configure os valores somente em **Settings > Variables and Secrets** no Pages. N
 
 ## Estado conferido
 
-Em 30/09/2026, o Pages de produção estava implantado com saída `public`, deploy automático da branch `main`, binding D1 `DB` e `PUBLIC_BASE_URL` configurada. A OAuth App GitHub existe com homepage e callback de produção exatos, sem wildcard ou Device Flow. Os logins ainda respondem 503 porque faltam no Pages `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET`. Cadastre os dois IDs como texto e os dois secrets como valores criptografados; não os grave no repositório. O Client Web do Google também precisa estar cadastrado com o callback indicado acima.
+Em 30/09/2026, o Pages de produção estava implantado com saída `public`, deploy automático da branch `main`, binding D1 `DB`, `PUBLIC_BASE_URL` e `GITHUB_CLIENT_ID` configurados. A OAuth App GitHub existe com homepage e callback de produção exatos, sem wildcard ou Device Flow. Os logins ainda respondem 503 porque faltam no Pages `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET`. Cadastre o Client ID do Google como texto e os dois secrets como valores criptografados; não os grave no repositório. O Client Web do Google também precisa estar cadastrado com o callback indicado acima.
 
 ## Verificação
 
